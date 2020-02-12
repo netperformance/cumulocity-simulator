@@ -64,7 +64,9 @@ public class App {
     }
   }
 
-	public static void createMeasurementList() {
+  // Check which kind of measurements needs to be created by reading the settings file e.g. temperature or humidity
+	// The measurements array will contain all the measurement types e.g. temperature, humidity etc.
+  public static void createMeasurementList() {
 	  
 		ArrayList<String> measurementListFromSettingsFile = new ArrayList<String>(Arrays.asList(Helper.measurements.toLowerCase().split(",")));
     HashSet<String> hashSet = new HashSet<String>(measurementListFromSettingsFile);
@@ -106,8 +108,10 @@ public class App {
 	  if(Helper.numberMeasurements>=1) {
 	    if(Helper.delayInSecondsBetweenEachMeasurement>=0) {
 	      if(Helper.protocol.equals("mqtt")) {
+	        logger.info("Simulator is up and running. Sending measurements via MQTT :)");
 	        createNewMQTTSimulator(Helper.externalDeviceId, Helper.numberMeasurements, Helper.delayInSecondsBetweenEachMeasurement, measurements);
 	      } else if(Helper.protocol.equals("rest")) {
+	        logger.info("Simulator is up and running. Sending measurements via REST :)");
 	        createNewRESTSimulator(internalDeviceId, Helper.numberMeasurements, Helper.delayInSecondsBetweenEachMeasurement, measurements);
 	      } else {
 	        logger.error("Unknown protocol. Choose between mqtt or rest.");
@@ -218,7 +222,6 @@ public class App {
 	      });
 	      
 	      thread.start();
-	      logger.info("Simulator is up and running. Sending measurements via MQTT :)");
 	    }
 	  } catch (Exception e) {
 	    logger.error("Can't create a MQTT client. ",e);
@@ -253,7 +256,6 @@ public class App {
 			});
 			
 			thread.start();
-			logger.info("Simulator is up and running. Sending measurements via REST :)");
     }
   }
 

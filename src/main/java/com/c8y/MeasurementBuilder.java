@@ -22,6 +22,7 @@ import c8y.TemperatureMeasurement;
 public class MeasurementBuilder {
 	
   private static final Logger logger = Logger.getLogger(MeasurementBuilder.class);
+  private static int measurementCounter = 1;
 
 	private MeasurementBuilder() {}
 	
@@ -65,6 +66,8 @@ public class MeasurementBuilder {
 				measurementRepresentation.set(temperatureMeasurement);
 				measurementRepresentation.setDateTime(new DateTime());
 				Cumulocity.measurementApi.create(measurementRepresentation);
+				logger.info("Temperature ("+measurementCounter+")");
+				measurementCounter++;
 				Helper.sleep(sleepTimerInSeconds);
 			}
 		} catch(Exception e) {
@@ -106,6 +109,8 @@ public class MeasurementBuilder {
 				measurementRepresentation.set(humidityMeasurement);
 				measurementRepresentation.setDateTime(new DateTime());
 				Cumulocity.measurementApi.create(measurementRepresentation);
+				logger.info("Humidity ("+measurementCounter+")");
+				measurementCounter++;
 				Helper.sleep(sleepTimerInSeconds);
 			}
 		} catch(Exception e) {
@@ -158,6 +163,8 @@ public class MeasurementBuilder {
 				measurementRepresentation.setDateTime(new DateTime());
 				Cumulocity.measurementApi.create(measurementRepresentation);
 				counter += 1;
+        logger.info("Battery ("+measurementCounter+")");
+        measurementCounter++;
 				Helper.sleep(sleepTimerInSeconds);
 			}
 		} catch(Exception e) {
@@ -199,6 +206,8 @@ public class MeasurementBuilder {
 				measurementRepresentation.set(signalStrength);
 				measurementRepresentation.setDateTime(new DateTime());
 				Cumulocity.measurementApi.create(measurementRepresentation);
+        logger.info("Signal strength ber ("+measurementCounter+")");
+        measurementCounter++;
 				Helper.sleep(sleepTimerInSeconds);
 			}
 		} catch(Exception e) {
@@ -240,6 +249,8 @@ public class MeasurementBuilder {
 				measurementRepresentation.set(signalStrength);
 				measurementRepresentation.setDateTime(new DateTime());
 				Cumulocity.measurementApi.create(measurementRepresentation);
+        logger.info("Signal strength ssi ("+measurementCounter+")");
+        measurementCounter++;
 				Helper.sleep(sleepTimerInSeconds);
 			}
 		} catch(Exception e) {
@@ -292,6 +303,8 @@ public class MeasurementBuilder {
 				measurementRepresentation.setDateTime(new DateTime());
 				Cumulocity.measurementApi.create(measurementRepresentation);
 				counter += 1;
+        logger.info("Light ("+measurementCounter+")");
+        measurementCounter++;
 				Helper.sleep(sleepTimerInSeconds);
 			}
 		} catch(Exception e) {
@@ -335,7 +348,8 @@ public class MeasurementBuilder {
 				measurementRepresentation.set(humidityMeasurement);
 				measurementRepresentation.setDateTime(new DateTime());
 				measurementApi.create(measurementRepresentation);
-				
+				logger.info("Custom ("+measurementCounter+")");
+        measurementCounter++;
 				Common.sleep(sleepTimerInSeconds);
 			}
 		} catch(Exception e) {
