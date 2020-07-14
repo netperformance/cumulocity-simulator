@@ -3,3 +3,6 @@ This simulator will send periodically predefined measurements and/or custom meas
 
 User- and installation manual:
 https://aaron.de/storage/Cumulocity%20Simulator%20-%20user%20manual%20v0.0.5.pdf
+
+
+License: MIT
